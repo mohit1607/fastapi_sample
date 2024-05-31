@@ -14,9 +14,10 @@ from utils import (
 )
 from models.users import Token
 
+# Remember Annotated is used to provide the metadat to the query param if it goes wrong
 
 # Dependency function
-def check_login(data: Annotated[str, Header()]):
+def check_login(data: str = Header()):
     try:
         # Check if the token is provided
         if not data:
@@ -126,7 +127,7 @@ async def login_user(details: LogUser):
     }
     
 @router.post('/items')
-async def list_items(authenticated_user: Annotated[str, Depends(check_login)] ): #this is called dependency injection
+async def list_items(authenticated_user: str =  Depends(check_login) ): #this is called dependency injection
     # here this funciton depends on the function check_login which will check if the token is valid or not 
     # and then validate the user to perform certian operations.
     if not authenticated_user['status_authenticated']: 
