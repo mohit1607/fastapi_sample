@@ -72,6 +72,8 @@ router = APIRouter()
 db = client['Simple_database']
 usersCollection = db['users']
 
+
+
 @router.get('/')
 async def getUsers():
     userslist = list_serial(usersCollection.find())
@@ -310,7 +312,7 @@ async def ppt_download():
             'Content-Disposition': 'attachment; filename=filename.pptx',
             'Content-Type': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
         }
-        response = Response(content=local_db[random_index], headers=headers)
+        response = Response(content=local_db[random_index], headers=headers) #this is important step
         return response
     except Exception as e:
         return {"error": str(e)}
