@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 from connection.connectdb import conncectDB, client
-from routes.route import router
+# from routes.route import router
 from routes.route2 import router as router2
 from connection.connectdb2 import ping_server
 import time
